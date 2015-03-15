@@ -45,4 +45,4 @@ get '/:birthdate' do
     @message = numerology_msg (birth_path_num(birthdate))
     "#{@message}"
     erb :index
-end
+end     
