@@ -42,6 +42,7 @@ end
 
 get '/:birthdate' do
     birthdate = params[:birthdate]
-    message = numerology_msg (birth_path_num(birthdate))
-    "#{message}"
+    @message = numerology_msg (birth_path_num(birthdate))
+    "#{@message}"
+    erb :index
 end
