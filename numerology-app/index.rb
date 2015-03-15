@@ -14,7 +14,7 @@ def birth_path_num (birthdate)
 end
 
 def numerology_msg (birth_path_num)  
-#    num = "Your numerology number is #{birth_path_num}. "
+    num = "Your numerology number is #{birth_path_num}. "
     case birth_path_num
         when 1
         msg = "One is the leader. The number one indicates the ability to stand alone, and is a strong vibration. Ruled by the Sun."
@@ -37,7 +37,21 @@ def numerology_msg (birth_path_num)
     else
         msg = "Somehow your numerology number is not 1 through 9.  There's an error."
     end
-#    numerology_msg = num + msg
+    numerology_msg = num + msg
+end
+
+get '/list/' do
+    number=1
+    string=""
+    while number<10 do
+        string += numerology_msg(number) + "\n"
+        number+=1
+        erb :list
+    end
+    @message = string
+
+    "#{@message}"
+    erb :list
 end
 
 get '/:birthdate' do
