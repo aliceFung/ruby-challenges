@@ -40,23 +40,15 @@ def numerology_msg (birth_path_num)
     numerology_msg = num + msg
 end
 
-get '/list/' do
-    number=1
-    string=""
-    while number<10 do
-        string += numerology_msg(number) + "\n"
-        number+=1
-        erb :list
-    end
-    @message = string
-
-    "#{@message}"
-    erb :list
+get '/' do
+    erb :form
 end
 
-get '/:birthdate' do
-    birthdate = params[:birthdate]
-    @message = numerology_msg (birth_path_num(birthdate))
-    "#{@message}"
+post '/' do
+    "#{params}"
+#get '/:birthdate' do
+#    birthdate = params[:birthdate]
+#    @message = numerology_msg (birth_path_num(birthdate))
+#    "#{@message}"
     erb :index
 end     
