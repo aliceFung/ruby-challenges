@@ -40,14 +40,28 @@ def numerology_msg (birth_path_num)
     numerology_msg = num + msg
 end
 
-get '/' do
-    erb :form
-end
-
-post '/' do
-#    "#{params}"
+#for duplicate code in get '/:birthdate', post '/'
+def setup_index_view
     birthdate = params[:birthdate]
     @message = numerology_msg (birth_path_num(birthdate))
     "#{@message}"
     erb :index
+end
+
+get '/' do
+    erb :form
+end
+
+get '/:birthdate' do
+    setup_index_view
+end
+
+post '/' do
+    setup_index_view
 end     
+
+get '/message/:birth_path_num' do
+    birth_path_num = params[:birth_path_num].to_i
+    @message = numerology_msg(birth_path_num)
+    erb: index
+end
