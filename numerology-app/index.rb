@@ -51,7 +51,7 @@ def setup_index_view
 end
 
 def valid_birthdate(input)
-    if input.length == 8
+    if input.length == 8 && input.match(/^[0-9]+[0-9]$/)
         return true
     else
         return false
