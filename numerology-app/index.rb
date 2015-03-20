@@ -43,7 +43,7 @@ end
 
 #for duplicate code in get '/:birthdate', post '/'
 def setup_index_view
-    birthdate = params[:birthdate]
+    birthdate = params[:birthdate].gsub("-","")
     @birth_path_num = birth_path_num(birthdate)
     @message = numerology_msg (@birth_path_num)
     "#{@message}"
