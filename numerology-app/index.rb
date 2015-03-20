@@ -35,7 +35,8 @@ def numerology_msg (birth_path_num)
         when 9
         msg = "This is the teacher. Number Nine is a tolerant, somewhat impractical, and sympathetic vibration. Ruled by Mars."
     else
-        msg = "Somehow your numerology number is not 1 through 9.  There's an error."
+        msg = "Somehow your numerology number is not 1 through 9."
+        num = "Error: "
     end
     numerology_msg = num + msg
 end
@@ -43,7 +44,8 @@ end
 #for duplicate code in get '/:birthdate', post '/'
 def setup_index_view
     birthdate = params[:birthdate]
-    @message = numerology_msg (birth_path_num(birthdate))
+    @birth_path_num = birth_path_num(birthdate)
+    @message = numerology_msg (@birth_path_num)
     "#{@message}"
     erb :index
 end
@@ -52,16 +54,18 @@ get '/' do
     erb :form
 end
 
+#recovered this from a previous commit. had initially deleted due to duplicate in post '/'
 get '/:birthdate' do
     setup_index_view
 end
 
 post '/' do
     setup_index_view
+    redirect "/message/#{@birth_path_num}"
 end     
 
 get '/message/:birth_path_num' do
     birth_path_num = params[:birth_path_num].to_i
     @message = numerology_msg(birth_path_num)
-    erb: index
+    erb :index
 end
