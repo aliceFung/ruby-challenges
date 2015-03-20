@@ -50,6 +50,14 @@ def setup_index_view
     erb :index
 end
 
+def valid_birthdate(input)
+    if input.length == 8
+        return true
+    else
+        return false
+    end
+end
+
 get '/' do
     erb :form
 end
@@ -60,8 +68,14 @@ get '/:birthdate' do
 end
 
 post '/' do
-    setup_index_view
-    redirect "/message/#{@birth_path_num}"
+    birthdate = params[:birthdate].gsub("-","")
+    if valid_birthdate(birthdate)
+        setup_index_view
+        redirect "/message/#{@birth_path_num}"
+    else
+        @error = "Your input was not in MMDDYYYY format. Please try again."
+        erb :form
+    end
 end     
 
 get '/message/:birth_path_num' do

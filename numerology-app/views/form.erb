@@ -7,9 +7,13 @@
 <form class ="col-md-3" action="/" method="post">
     <div class="form-group">
     <label for="birthdate">Enter your birthdate as MMDDYYYY:</label>
-    <input class="form-control" name="birthdate" type="date" />
+        <input name="birthdate" type="text"/>
+
     </div>
     <input class="btn btn-success" type="submit" />
+    <div>
+        <%= @error %>
+    </div>
 </form>
 
 </div>
