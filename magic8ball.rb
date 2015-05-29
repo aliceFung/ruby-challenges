@@ -1,8 +1,8 @@
 require 'rubygems'
 require 'twilio-ruby'
 
-account_sid = "AC9472d9d41c43ed5883c38b84d3ca671b"
-auth_token = "f8f025aa9068aec2cafb1f4afa993dce"
+account_sid = #insert account_sid
+auth_token = #insert auth_token
 
 puts "What is your Yes/No question?"
 question = gets.chomp
