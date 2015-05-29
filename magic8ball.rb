@@ -2,7 +2,7 @@ require 'rubygems'
 require 'twilio-ruby'
 
 account_sid = #insert account_sid
-auth_token = #insert auth_token
+auth_token = #insert auth_token, make sure if you accidentally publicize this, reset it.
 
 puts "What is your Yes/No question?"
 question = gets.chomp
